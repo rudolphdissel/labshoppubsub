@@ -28,6 +28,8 @@ public class Order {
 
     private Double amount;
 
+    private String address;
+
     @PostPersist
     public void onPostPersist() {
         OrderPlaced orderPlaced = new OrderPlaced(this);
