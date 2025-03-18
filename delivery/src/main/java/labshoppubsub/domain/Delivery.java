@@ -38,5 +38,16 @@ public class Delivery {
         );
         return deliveryRepository;
     }
+    public static void addDelivery(OrderPlaced orderPlaced) {
+        //implement business logic here:
+
+        // Example 1:  new item 
+        Delivery delivery = new Delivery();
+        delivery.setCustomerId(orderPlaced.getCustomerId());
+        delivery.setAddress(orderPlaced.getAddress());
+        delivery.setStatus("READY");
+        repository().save(delivery);
+
+    }
 }
 //>>> DDD / Aggregate Root
