@@ -22,5 +22,21 @@ public class PolicyHandler {
 
     @StreamListener(KafkaProcessor.INPUT)
     public void whatever(@Payload String eventString) {}
+
+    @StreamListener(
+        value = KafkaProcessor.INPUT,
+        condition = "headers['type']=='OrderPlaced'"
+    )
+    public void wheneverOrderPlaced_AddDeliveryh(
+        @Payload OrderPlaced orderPlaced
+    ) {
+        OrderPlaced event = orderPlaced;
+        System.out.println(
+            "\n\n##### listener AddDeliveryh : " + orderPlaced + "\n\n"
+        );
+
+        // Sample Logic //
+        Delivery.addDeliveryh(event);
+    }
 }
 //>>> Clean Arch / Inbound Adaptor
